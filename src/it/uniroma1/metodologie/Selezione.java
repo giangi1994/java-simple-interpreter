@@ -40,9 +40,9 @@ public class Selezione implements Istruzione {
 
     /**
      * Costruttore Selezione con istruzioni per l'if espressione per l'else
-     * @param espressione
-     * @param istruzioniIf
-     * @param istruzioniElse
+     * @param espressione espresssione
+     * @param istruzioniIf istruzioni per l'if
+     * @param istruzioniElse istruzione per l'else
      */
 
     public Selezione(Espressione espressione, ArrayList<Istruzione> istruzioniIf, ArrayList<Istruzione> istruzioniElse){
@@ -52,8 +52,8 @@ public class Selezione implements Istruzione {
 
     /**
      * Esegue la selezione
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
      */
 
     @Override

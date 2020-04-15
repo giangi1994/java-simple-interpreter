@@ -14,7 +14,7 @@ public class Etichetta implements Istruzione {
 
     /**
      * Costruttore dell'etichetta
-     * @param etichetta
+     * @param etichetta etichetta
      */
 
     public Etichetta(String etichetta){ this.etichetta = etichetta; }

@@ -1,12 +1,12 @@
 package it.uniroma1.metodologie;
 
 /**
- * Eccezione che viene lanciata quando nelle operazioni <, >, <=, >= una delle due espressioni non è di tipo intero
+ * Eccezione che viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINOREUGUALE, MAGGIOREUGUALE, una delle due espressioni non e' di tipo intero
  */
 
 public class MaggioreMinoreException extends Exception {
 
     MaggioreMinoreException(){
-        super("Uno dei due tipi non è intero");
+        super("Uno dei due tipi non e' intero");
     }
 }

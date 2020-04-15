@@ -65,9 +65,9 @@ public class Programma {
      * Esegue il dispatcher dell'array di stringhe passato in input
      * @param s array contenente le stringhe su cui eseguire il dispatcher
      * @return Ritorna la lista di espressioni
-     * @throws VariabileNonDefinitaException
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
+     * @throws VariabileNonDefinitaException viene lanciata quando una variabile non e' definita
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
      */
 
     private ArrayList<Espressione> dispatcher(String[] s) throws
@@ -103,10 +103,10 @@ public class Programma {
      * @param operatore operatore
      * @param valore variabile
      * @return Ritorna un oggetto Assegnazione
-     * @throws MaxConfrontiException
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
-     * @throws SintassiNonValidaException
+     * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
      */
 
     private Assegnazione assegna(ArrayList<Espressione> arE, Operatore operatore, int valore) throws
@@ -119,7 +119,7 @@ public class Programma {
         int j = 2;
         Espressione a = new EspressioneComposta(arE.get(0), arE.get(1), operatore);
 
-        if(arE.size() > 2 && (operatore == Operatore.DISUGUAGLIANZA || operatore == Operatore.UGUAGLIANZA || operatore == Operatore.MINORE || operatore == Operatore.MAGGIORE || operatore == Operatore.MAGGIOREUGUALE || operatore == Operatore.MINOREUGUALE)){
+        if(arE.size() > 2 && (operatore == Operatore.DISUGUAGLIANZA || operatore == Operatore.UGUAGLIANZA || operatore == Operatore.MINORE || operatore == Operatore.MAGGIORE || operatore == Operatore.MAGGIORE_UGUALE || operatore == Operatore.MINORE_UGUALE)){
             throw new MaxConfrontiException();
         }
         while (j < arE.size()) {
@@ -153,9 +153,9 @@ public class Programma {
      * @param arE lista di espressioni da assegnare alla variabile
      * @param valore variabile
      * @return Ritorna un oggetto Assegnazione
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
-     * @throws SintassiNonValidaException
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
      */
 
     private Assegnazione assegna(ArrayList<Espressione> arE, int valore) throws
@@ -190,11 +190,11 @@ public class Programma {
      * Assegna un valore alla variabile
      * @param s riga del file
      * @return Ritorna un oggetto Assegnazione
-     * @throws SintassiNonValidaException
-     * @throws TipoVariabiliDiversoException
-     * @throws MaggioreMinoreException
-     * @throws VariabileNonDefinitaException
-     * @throws MaxConfrontiException
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws VariabileNonDefinitaException viene lanciata quando una variabile non e' definita
+     * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
      */
 
     private Assegnazione assegnazione(String s) throws
@@ -226,11 +226,11 @@ public class Programma {
             String s2 = s1.replace("<=", " ");
             String[] s3 = s2.replace("=", " ").split(" ");
             e1 = dispatcher(s3);
-            return assegna(e1, Operatore.MINOREUGUALE, valoreVariabile);
+            return assegna(e1, Operatore.MINORE_UGUALE, valoreVariabile);
         }else if(s.contains(">=")){
             String[] s2 = s1.replace(">=", " ").split(" ");
             e1 = dispatcher(s2);
-            return assegna(e1, Operatore.MAGGIOREUGUALE, valoreVariabile);
+            return assegna(e1, Operatore.MAGGIORE_UGUALE, valoreVariabile);
         }else if(s.contains("<")){
             String[] s2 = s1.replace("<", " ").split(" ");
             e1 = dispatcher(s2);
@@ -254,9 +254,9 @@ public class Programma {
      * Stampa la variabile o la costante di tipo stringa
      * @param s riga del file
      * @return Ritorna un oggetto Print
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
-     * @throws SintassiNonValidaException
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
      */
 
     private Print print(String s) throws
@@ -289,11 +289,11 @@ public class Programma {
      * @param iElse array di stringhe per l'else
      * @param operatore operatore
      * @return Ritorna un oggetto Selezione
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
-     * @throws SintassiNonValidaException
-     * @throws VariabileNonDefinitaException
-     * @throws MaxConfrontiException
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
+     * @throws VariabileNonDefinitaException viene lanciata quando una variabile non e' definita
+     * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
      */
 
     private Selezione dispatcherSelezione(ArrayList<Espressione> e, ArrayList<Istruzione> i, ArrayList<Istruzione> iE,String[] iIf, String[] iElse, Operatore operatore) throws
@@ -328,11 +328,11 @@ public class Programma {
     /**
      * @param s riga del file
      * @return Ritorna l'oggetto Selezione
-     * @throws TipoVariabiliDiversoException
-     * @throws MaggioreMinoreException
-     * @throws VariabileNonDefinitaException
-     * @throws SintassiNonValidaException
-     * @throws MaxConfrontiException
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws VariabileNonDefinitaException viene lanciata quando una variabile non e' definita
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
+     * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
      */
 
     private Selezione selezione(String s) throws
@@ -362,11 +362,11 @@ public class Programma {
         }else if(s1.contains("<=")){
             String[] s3 = iIf[0].replace(" ", "").replace("<=", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MINOREUGUALE);
+            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MINORE_UGUALE);
         }else if(s1.contains(">=")){
             String[] s3 = iIf[0].replace(" ", "").replace(">=", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MAGGIOREUGUALE);
+            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MAGGIORE_UGUALE);
         }else if(s1.contains("<")){
             String[] s3 = iIf[0].replace(" ", "").replace("<", " ").split(" ");
             e1 = dispatcher(s3);
@@ -386,11 +386,11 @@ public class Programma {
     /**
      * Dispatcher per l'iterazione
      * @param s2 array di stringhe che contiene le istruzioni
-     * @throws SintassiNonValidaException
-     * @throws MaxConfrontiException
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
-     * @throws VariabileNonDefinitaException
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
+     * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws VariabileNonDefinitaException viene lanciata quando una variabile non e' definita
      */
 
     private void dispatcherIterazione(String[] s2) throws
@@ -412,11 +412,11 @@ public class Programma {
     /**
      * Esegue l'iterazione
      * @param s riga del file
-     * @throws TipoVariabiliDiversoException
-     * @throws MaggioreMinoreException
-     * @throws VariabileNonDefinitaException
-     * @throws SintassiNonValidaException
-     * @throws MaxConfrontiException
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws VariabileNonDefinitaException viene lanciata quando una variabile non e' definita
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
+     * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
      */
 
     private void iterazione(String s) throws
@@ -526,7 +526,7 @@ public class Programma {
     /**
      * Aggiunge un'eticchetta alla lista di etichette con la rispettiva posizione nel file
      * @param s riga del file
-     * @param index numero riga del file dove è presente l'etichetta
+     * @param index numero riga del file dove e' presente l'etichetta
      */
 
     private void setEtichetta(String s, int index){
@@ -555,11 +555,11 @@ public class Programma {
 
     /**
      * Esegue il programma
-     * @throws SintassiNonValidaException
-     * @throws MaxConfrontiException
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
-     * @throws VariabileNonDefinitaException
+     * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
+     * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
+     * @throws VariabileNonDefinitaException viene lanciata quando una variabile non eì definita
      */
 
     public void esegui() throws

@@ -36,11 +36,11 @@ public class Iterazione implements Istruzione, Iterable<Istruzione> {
 
     /**
      * Costruttore per l'iterazione
-     * @param v
-     * @param e
-     * @param operatore
-     * @param incremento
-     * @param istruzioni
+     * @param v espressione
+     * @param e espressione
+     * @param operatore operatore
+     * @param incremento incremento
+     * @param istruzioni istruzioni da eseguire
      */
 
     public Iterazione(Espressione v, Espressione e, Operatore operatore, int incremento, ArrayList<Istruzione> istruzioni){
@@ -78,8 +78,8 @@ public class Iterazione implements Istruzione, Iterable<Istruzione> {
 
     /**
      * Esegue l'iterazione
-     * @throws MaggioreMinoreException
-     * @throws TipoVariabiliDiversoException
+     * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+     * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
      */
 
     @Override

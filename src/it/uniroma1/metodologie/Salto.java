@@ -14,7 +14,7 @@ public class Salto implements Istruzione {
 
     /**
      * Costruttore per il salto
-     * @param etichetta
+     * @param etichetta etichetta
      */
 
     public Salto(Etichetta etichetta){ this.etichetta = etichetta; }

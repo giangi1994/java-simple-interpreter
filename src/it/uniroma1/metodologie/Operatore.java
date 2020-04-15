@@ -7,7 +7,7 @@ package it.uniroma1.metodologie;
 public enum Operatore implements EseguiOperazione {
 
     /**
-     * Operatore ==
+     * Operatore UGUALE
      */
 
     UGUAGLIANZA {
@@ -16,8 +16,8 @@ public enum Operatore implements EseguiOperazione {
          * @param e1 espressione 1
          * @param e2 espressione 2
          * @return Ritorna l'espressione booleana dopo aver confrontato se le due espressioni in input sono uguali
-         * @throws MaggioreMinoreException
-         * @throws TipoVariabiliDiversoException
+         * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINOREUGUALE, MAGGIOREUGUALE, una delle due espressioni non e' di tipo intero
+         * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
          */
 
         @Override
@@ -28,7 +28,7 @@ public enum Operatore implements EseguiOperazione {
     },
 
     /**
-     * Operatore <>
+     * Operatore DIVERSO
      */
 
     DISUGUAGLIANZA{
@@ -37,8 +37,8 @@ public enum Operatore implements EseguiOperazione {
          * @param e1 espressione 1
          * @param e2 espressione 2
          * @return Ritorna l'espressione booleana dopo aver confrontato se le due espressioni in input sono diverse
-         * @throws MaggioreMinoreException
-         * @throws TipoVariabiliDiversoException
+         * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINOREUGUALE, MAGGIOREUGUALE, una delle due espressioni non e' di tipo intero
+         * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
          */
 
         @Override
@@ -49,7 +49,7 @@ public enum Operatore implements EseguiOperazione {
     },
 
     /**
-     * Operatore >
+     * Operatore MAGGIORE
      */
 
     MAGGIORE{
@@ -57,9 +57,9 @@ public enum Operatore implements EseguiOperazione {
         /**
          * @param e1 espressione 1 (INTERO)
          * @param e2 espressione 2 (INTERO)
-         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 è maggiore dell'espressione e2.
-         * @throws MaggioreMinoreException
-         * @throws TipoVariabiliDiversoException
+         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 e' maggiore dell'espressione e2.
+         * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINOREUGUALE, MAGGIOREUGUALE, una delle due espressioni non e' di tipo intero
+         * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
          */
 
         @Override
@@ -73,7 +73,7 @@ public enum Operatore implements EseguiOperazione {
     },
 
     /**
-     * Operatore <
+     * Operatore MINORE
      */
 
     MINORE{
@@ -81,9 +81,9 @@ public enum Operatore implements EseguiOperazione {
         /**
          * @param e1 espressione 1 (INTERO)
          * @param e2 espressione 2 (INTERO)
-         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 è minore dell'espressione e2.
-         * @throws MaggioreMinoreException
-         * @throws TipoVariabiliDiversoException
+         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 e' minore dell'espressione e2.
+         * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINOREUGUALE, MAGGIOREUGUALE, una delle due espressioni non e' di tipo intero
+         * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
          */
 
         @Override
@@ -97,17 +97,17 @@ public enum Operatore implements EseguiOperazione {
     },
 
     /**
-     * Operatore >=
+     * Operatore MAGGIORE_UGUALE
      */
 
-    MAGGIOREUGUALE{
+    MAGGIORE_UGUALE {
 
         /**
          * @param e1 espressione 1 (INTERO)
          * @param e2 espressione 2 (INTERO)
-         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 è maggiore o uguale dell'espressione e2.
-         * @throws MaggioreMinoreException
-         * @throws TipoVariabiliDiversoException
+         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 e' maggiore o uguale dell'espressione e2.
+         * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+         * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
          */
 
         @Override
@@ -121,17 +121,17 @@ public enum Operatore implements EseguiOperazione {
     },
 
     /**
-     * Operatore <=
+     * Operatore MINORE_UGUALE
      */
 
-    MINOREUGUALE{
+    MINORE_UGUALE {
 
         /**
          * @param e1 espressione 1 (INTERO)
          * @param e2 espressione 2 (INTERO)
-         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 è minore o uguale dell'espressione e2.
-         * @throws MaggioreMinoreException
-         * @throws TipoVariabiliDiversoException
+         * @return Ritorna l'espressione booleana dopo aver confrontato se l'espressione e1 e' minore o uguale dell'espressione e2.
+         * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+         * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
          */
 
         @Override
@@ -145,7 +145,7 @@ public enum Operatore implements EseguiOperazione {
     },
 
     /**
-     * Operatore +
+     * Operatore SOMMA
      */
 
     SOMMA{
@@ -154,8 +154,8 @@ public enum Operatore implements EseguiOperazione {
          * @param e1 espressione 1
          * @param e2 espressione 2
          * @return Ritorna l'espressione dopo aver sommato le due espressioni in input, solo se sono dello stesso tipo.
-         * @throws MaggioreMinoreException
-         * @throws TipoVariabiliDiversoException
+         * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
+         * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
          */
 
         @Override

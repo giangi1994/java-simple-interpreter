@@ -14,7 +14,7 @@ public class Commento implements Istruzione {
 
     /**
      * Costruzione dell'istruzione Commento
-     * @param commento
+     * @param commento commento
      */
 
     public Commento(String commento){ this.commento = commento; }
