@@ -18,7 +18,7 @@ public class Stringa extends Espressione {
      */
 
     public Stringa(String valore){
-        super.tipo = TipoDiDato.STRINGA;
+        super(TipoDiDato.STRINGA);
         this.valore = valore;
     }
 

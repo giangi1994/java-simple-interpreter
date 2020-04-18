@@ -75,5 +75,7 @@ public class Selezione implements Istruzione {
             else while(itElse.hasNext()) itElse.next().esegui();
         }
     }
+
+
 }
 

@@ -1,72 +1,47 @@
 package it.uniroma1.metodologie;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Nota bene: questo codice non deve essere in nessun modo modificato
  * 
  * @author navigli
- *
+ * @author fabiano
  */
 class MiniBASICTest
 {
-	@Test
-	void testSuccessione28()
+	@ParameterizedTest
+	@ValueSource(strings = {"prg/28/successione", "prg/28/fibonacci", "prg/full/prg1", "prg/full/fibonacci", "prg/full/pari_dispari", "prg/full/ordina"})
+	public void test(String filename)
 	{
-		System.out.println("Successione/28\n---");
+		System.out.println("Test " + filename);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		try
 		{
-			Programma p = Programma.fromFile("prg/28/successione.bas");
+			Programma p = Programma.fromFile(filename + ".bas");
 			new MiniBASIC().esegui(p);
-		}
-		catch(Exception e) { e.printStackTrace(); }
-	}
 
-	@Test
-	void testFibonacci28()
-	{
-		System.out.println("Fibonacci/28\n---");
-		try
-		{
-			Programma p = Programma.fromFile("prg/28/fibonacci.bas");
-			new MiniBASIC().esegui(p);
+			assertEquals(Files.readString(Paths.get(filename + ".out")).replaceAll("\r", ""), baos.toString().replaceAll("\r", ""));
 		}
-		catch(Exception e) { e.printStackTrace(); }
-	}
-
-	@Test
-	void testPrg1()
-	{
-		System.out.println("Prg1/full\n---");
-		try
+		catch(Exception e)
 		{
-			Programma p = Programma.fromFile("prg/full/prg1.bas");
-			new MiniBASIC().esegui(p);
+			e.printStackTrace();
+			fail();
 		}
-		catch(Exception e) { e.printStackTrace(); }
-	}
-
-	@Test
-	void testFibonacci()
-	{
-		System.out.println("Fibonacci/full\n---");
-		try
+		finally
 		{
-			Programma p = Programma.fromFile("prg/full/fibonacci.bas");
-			new MiniBASIC().esegui(p);
+			System.out.flush();
+			System.setOut(old);
 		}
-		catch(Exception e) { e.printStackTrace(); }
-	}
-
-	@Test
-	void testPariDispari()
-	{
-		System.out.println("PariDispari/full\n---");
-		try
-		{
-			Programma p = Programma.fromFile("prg/full/pari_dispari.bas");
-			new MiniBASIC().esegui(p);
-		}
-		catch(Exception e) { e.printStackTrace(); }
+		System.out.println("Success.");
 	}
 }

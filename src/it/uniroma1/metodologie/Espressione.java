@@ -7,10 +7,17 @@ package it.uniroma1.metodologie;
 abstract public class Espressione {
 
     /**
-     * Mantiene il tipo di dato dell'espressione
+     * Tipo di dato dell'espressione
      */
 
     protected TipoDiDato tipo;
+
+    /**
+     * Costruttore espressione
+     * @param tipo tipo dell'espressione
+     */
+
+    public Espressione(TipoDiDato tipo){ this.tipo = tipo; }
 
     /**
      * @return Ritorna il valore dell'espressione sottoforma di stringa

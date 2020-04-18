@@ -18,7 +18,7 @@ public class Intero extends Espressione {
      */
 
     public Intero(int valore){
-        super.tipo = TipoDiDato.INTERO;
+        super(TipoDiDato.INTERO);
         this.valore = valore;
     }
 

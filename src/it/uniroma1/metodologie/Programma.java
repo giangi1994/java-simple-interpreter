@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Classe Programma
@@ -550,7 +551,26 @@ public class Programma {
         for(int k = 0; k<etichette.size(); k++){
            if(etichette.get(k).equals(s1)) index = Integer.parseInt(etichette.get(k+1));break;
         }
+
         return index+1;
+    }
+
+    /**
+     * Legge le righe del file e le aggiunge alla lista di stringhe
+     * @return Ritorna la lista con tutte le righe del file
+     */
+
+    private ArrayList<String> readFile() {
+        ArrayList<String> list = new ArrayList<>();
+
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(nomeFile))) {
+            while (br.ready()) {
+                list.add(br.readLine().trim());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     /**
@@ -607,24 +627,6 @@ public class Programma {
     }
 
     /**
-     * Legge le righe del file e le aggiunge alla lista di stringhe
-     * @return Ritorna la lista con tutte le righe del file
-     */
-
-    private ArrayList<String> readFile() {
-        ArrayList<String> list = new ArrayList<>();
-
-        try (BufferedReader br = Files.newBufferedReader(Paths.get(nomeFile))) {
-            while (br.ready()) {
-                list.add(br.readLine().trim());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    /**
      * @param nomeFile nome del file
      * @return Ritorna un'istanza di Programma con input il nome del file
      */
@@ -633,7 +635,7 @@ public class Programma {
 
     /**
      * @param istruzioni istruzioni da eseguire
-     * @return Ritorna un'istanza di programma con input una lista di istruzioni
+     * @return Ritorna un'istanza di programma con input la lista di istruzioni
      */
 
     public static Programma of(ArrayList<Istruzione> istruzioni) { return new Programma(istruzioni); }

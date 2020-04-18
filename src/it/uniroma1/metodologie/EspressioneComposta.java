@@ -33,10 +33,11 @@ public class EspressioneComposta extends Espressione{
 
     public EspressioneComposta(Espressione e1, Espressione e2, Operatore op)
     {
+        super(e1.tipo);
         this.e1 = e1;
         this.e2 = e2;
         this.op = op;
-        super.tipo = this.e1.tipo;
+
     }
 
     /**

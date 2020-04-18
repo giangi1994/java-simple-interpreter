@@ -23,7 +23,10 @@ public class Variabile extends Espressione {
      * @param valore variabile
      */
 
-    public Variabile(int valore){ this.variabile = "$" + valore; }
+    public Variabile(int valore){
+        super(null);
+        this.variabile = "$" + valore;
+    }
 
     /**
      * @return Ritorna il valore della varibile sottoforma di stringa
