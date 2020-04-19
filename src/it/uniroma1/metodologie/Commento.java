@@ -13,12 +13,12 @@ public class Commento implements Istruzione {
     private String commento;
 
     /**
-     * Costruzione dell'istruzione Commento
+     * Costruttore dell'istruzione Commento
      * @param commento commento
      */
 
-    public Commento(String commento){ this.commento = commento; }
+    public Commento(String commento) { this.commento = commento; }
 
     @Override
-    public void esegui(){ }
+    public void esegui() { }
 }

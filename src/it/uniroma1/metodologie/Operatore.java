@@ -31,7 +31,7 @@ public enum Operatore implements EseguiOperazione {
      * Operatore DIVERSO
      */
 
-    DISUGUAGLIANZA{
+    DISUGUAGLIANZA {
 
         /**
          * @param e1 espressione 1
@@ -52,7 +52,7 @@ public enum Operatore implements EseguiOperazione {
      * Operatore MAGGIORE
      */
 
-    MAGGIORE{
+    MAGGIORE {
 
         /**
          * @param e1 espressione 1 (INTERO)
@@ -67,7 +67,7 @@ public enum Operatore implements EseguiOperazione {
                 MaggioreMinoreException,
                 TipoVariabiliDiversoException
         {
-            if(e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
+            if (e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
             return new Booleano(Integer.parseInt(e1.getValore()) > Integer.parseInt(e2.getValore()));
         }
     },
@@ -76,7 +76,7 @@ public enum Operatore implements EseguiOperazione {
      * Operatore MINORE
      */
 
-    MINORE{
+    MINORE {
 
         /**
          * @param e1 espressione 1 (INTERO)
@@ -91,7 +91,7 @@ public enum Operatore implements EseguiOperazione {
                 MaggioreMinoreException,
                 TipoVariabiliDiversoException
         {
-            if(e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
+            if (e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
             return new Booleano(Integer.parseInt(e1.getValore()) < Integer.parseInt(e2.getValore()));
         }
     },
@@ -115,7 +115,7 @@ public enum Operatore implements EseguiOperazione {
                 MaggioreMinoreException,
                 TipoVariabiliDiversoException
         {
-            if(e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
+            if (e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
             return new Booleano(Integer.parseInt(e1.getValore()) >= Integer.parseInt(e2.getValore()));
         }
     },
@@ -139,7 +139,7 @@ public enum Operatore implements EseguiOperazione {
                 MaggioreMinoreException,
                 TipoVariabiliDiversoException
         {
-            if(e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
+            if (e1.tipo != TipoDiDato.INTERO || e2.tipo != TipoDiDato.INTERO) throw new MaggioreMinoreException();
             return new Booleano(Integer.parseInt(e1.getValore()) <= Integer.parseInt(e2.getValore()));
         }
     },
@@ -148,7 +148,7 @@ public enum Operatore implements EseguiOperazione {
      * Operatore SOMMA
      */
 
-    SOMMA{
+    SOMMA {
 
         /**
          * @param e1 espressione 1
@@ -169,8 +169,8 @@ public enum Operatore implements EseguiOperazione {
                     case INTERO: return new Intero(Integer.parseInt(e1.getValore()) + Integer.parseInt(e2.getValore()));
                     case STRINGA: return new Stringa(e1.getValore() + e2.getValore());
                     case BOOLEANO: return new Booleano(Boolean.parseBoolean(e1.getValore()) || Boolean.parseBoolean(e2.getValore()));
+                    default: return null;
             }
-                return null;
         }
     }
 }

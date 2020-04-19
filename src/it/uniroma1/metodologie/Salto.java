@@ -17,15 +17,15 @@ public class Salto implements Istruzione {
      * @param etichetta etichetta
      */
 
-    public Salto(Etichetta etichetta){ this.etichetta = etichetta; }
+    public Salto(Etichetta etichetta) { this.etichetta = etichetta; }
 
     @Override
-    public void esegui(){ }
+    public void esegui() { }
 
     /**
      * @return Ritorna l'etichetta sottoforma di stringa
      */
 
     @Override
-    public String toString(){ return this.etichetta.toString(); }
+    public String toString() { return this.etichetta.toString(); }
 }

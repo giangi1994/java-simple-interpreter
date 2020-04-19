@@ -6,5 +6,5 @@ package it.uniroma1.metodologie;
 
 public class TipoVariabiliDiversoException extends Exception {
 
-    TipoVariabiliDiversoException(){ super("Il tipo delle variabili e' diverso"); }
+    TipoVariabiliDiversoException() { super("Il tipo delle variabili e' diverso"); }
 }

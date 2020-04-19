@@ -24,7 +24,7 @@ public class Assegnazione implements Istruzione {
      * @param espressione espressione da assegnare alla variabile
      */
 
-    public Assegnazione(Variabile variabile, Espressione espressione){
+    public Assegnazione(Variabile variabile, Espressione espressione) {
         this.variabile = variabile;
         this.espressione = espressione;
     }
@@ -34,8 +34,8 @@ public class Assegnazione implements Istruzione {
      */
 
     @Override
-    public void esegui(){
-        this.variabile.espressione = espressione;
-        this.variabile.tipo = espressione.tipo;
+    public void esegui() {
+        this.variabile.valoreEspressione = this.espressione;
+        this.variabile.tipo = this.espressione.tipo;
     }
 }

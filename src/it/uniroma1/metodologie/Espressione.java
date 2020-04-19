@@ -17,7 +17,7 @@ abstract public class Espressione {
      * @param tipo tipo dell'espressione
      */
 
-    public Espressione(TipoDiDato tipo){ this.tipo = tipo; }
+    public Espressione(TipoDiDato tipo) { this.tipo = tipo; }
 
     /**
      * @return Ritorna il valore dell'espressione sottoforma di stringa

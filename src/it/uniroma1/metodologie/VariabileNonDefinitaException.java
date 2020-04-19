@@ -6,7 +6,5 @@ package it.uniroma1.metodologie;
 
 public class VariabileNonDefinitaException extends Exception {
 
-    VariabileNonDefinitaException(int varibile){
-        super("$" + varibile + " non e' definita");
-    }
+    VariabileNonDefinitaException(int varibile) { super("$" + varibile + " non e' definita"); }
 }

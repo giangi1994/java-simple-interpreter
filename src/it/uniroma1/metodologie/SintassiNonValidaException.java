@@ -6,7 +6,5 @@ package it.uniroma1.metodologie;
 
 public class SintassiNonValidaException extends Exception {
 
-    SintassiNonValidaException(){
-        super("Sintassi non valida");
-    }
+    SintassiNonValidaException() { super("Sintassi non valida"); }
 }

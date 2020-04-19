@@ -33,7 +33,7 @@ public class Selezione implements Istruzione {
      * @param istruzioniIf istruzioni per l'if
      */
 
-    public Selezione(Espressione espressione, ArrayList<Istruzione> istruzioniIf){
+    public Selezione(Espressione espressione, ArrayList<Istruzione> istruzioniIf) {
         this.espressione = espressione;
         this.istruzioniIf = istruzioniIf;
     }
@@ -45,7 +45,7 @@ public class Selezione implements Istruzione {
      * @param istruzioniElse istruzione per l'else
      */
 
-    public Selezione(Espressione espressione, ArrayList<Istruzione> istruzioniIf, ArrayList<Istruzione> istruzioniElse){
+    public Selezione(Espressione espressione, ArrayList<Istruzione> istruzioniIf, ArrayList<Istruzione> istruzioniElse) {
         this(espressione, istruzioniIf);
         this.istruzioniElse = istruzioniElse;
     }
@@ -65,17 +65,15 @@ public class Selezione implements Istruzione {
         //iteratore per le istruzione dell'if
         Iterator<Istruzione> itIf = this.istruzioniIf.iterator();
 
-        if (this.istruzioniElse.size() == 0) { if (Boolean.parseBoolean(espressione.getValore())) while(itIf.hasNext()) itIf.next().esegui(); }
+        if (this.istruzioniElse.size() == 0) { if (Boolean.parseBoolean(espressione.getValore())) while (itIf.hasNext()) itIf.next().esegui(); }
         else {
 
             //iteratore per le istruzioni dell'else
             Iterator<Istruzione> itElse = this.istruzioniElse.iterator();
 
-            if (Boolean.parseBoolean(espressione.getValore())) while(itIf.hasNext()) itIf.next().esegui();
-            else while(itElse.hasNext()) itElse.next().esegui();
+            if (Boolean.parseBoolean(espressione.getValore())) while (itIf.hasNext()) itIf.next().esegui();
+            else while (itElse.hasNext()) itElse.next().esegui();
         }
     }
-
-
 }
 

@@ -17,7 +17,7 @@ public class Booleano extends Espressione {
      * @param valore valore booleano in input
      */
 
-    public Booleano(boolean valore){
+    public Booleano(boolean valore) {
         super(TipoDiDato.BOOLEANO);
         this.valore = valore;
     }

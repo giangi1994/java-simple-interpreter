@@ -43,7 +43,7 @@ public class Iterazione implements Istruzione, Iterable<Istruzione> {
      * @param istruzioni istruzioni da eseguire
      */
 
-    public Iterazione(Espressione v, Espressione e, Operatore operatore, int incremento, ArrayList<Istruzione> istruzioni){
+    public Iterazione(Espressione v, Espressione e, Operatore operatore, int incremento, ArrayList<Istruzione> istruzioni) {
         this.v = v;
         this.e = e;
         this.istruzioni = istruzioni;
@@ -65,14 +65,10 @@ public class Iterazione implements Istruzione, Iterable<Istruzione> {
             private int k = 0;
 
             @Override
-            public boolean hasNext() {
-                return k < istruzioni.size();
-            }
+            public boolean hasNext() { return k < istruzioni.size(); }
 
             @Override
-            public Istruzione next() {
-                return hasNext() ? istruzioni.get(k++) : null;
-            }
+            public Istruzione next() { return hasNext() ? istruzioni.get(k++) : null; }
         };
     }
 
@@ -88,7 +84,7 @@ public class Iterazione implements Istruzione, Iterable<Istruzione> {
             TipoVariabiliDiversoException
     {
         Intero incremento = new Intero(this.incremento);
-        while (Boolean.parseBoolean(new EspressioneComposta(v, e, operatore).getValore())){
+        while (Boolean.parseBoolean(new EspressioneComposta(v, e, operatore).getValore())) {
             Iterator<Istruzione> it = this.istruzioni.iterator();
             while (it.hasNext()) {
                it.next().esegui();

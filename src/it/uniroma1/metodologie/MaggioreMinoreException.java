@@ -6,7 +6,5 @@ package it.uniroma1.metodologie;
 
 public class MaggioreMinoreException extends Exception {
 
-    MaggioreMinoreException(){
-        super("Uno dei due tipi non e' intero");
-    }
+    MaggioreMinoreException() { super("Uno dei due tipi non e' intero"); }
 }

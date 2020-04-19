@@ -19,14 +19,12 @@ public class TermineEsecuzione implements Istruzione {
      * @param list lista generica
      */
 
-    public TermineEsecuzione(ArrayList<?> list){
-        this.list = list;
-    }
+    public TermineEsecuzione(ArrayList<?> list) { this.list = list; }
 
     /**
      * Svuota la lista
      */
 
     @Override
-    public void esegui(){ list.clear(); }
+    public void esegui() { list.clear(); }
 }

@@ -17,7 +17,7 @@ public class Print implements Istruzione {
      * @param espressione espressione da stampare
      */
 
-    public Print(Espressione espressione){ this.espressione = espressione; }
+    public Print(Espressione espressione) { this.espressione = espressione; }
 
     /**
      * Stampa a video il valore dell'espressione

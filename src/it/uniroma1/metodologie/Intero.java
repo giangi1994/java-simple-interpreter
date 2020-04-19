@@ -17,7 +17,7 @@ public class Intero extends Espressione {
      * @param valore valore intero in input
      */
 
-    public Intero(int valore){
+    public Intero(int valore) {
         super(TipoDiDato.INTERO);
         this.valore = valore;
     }

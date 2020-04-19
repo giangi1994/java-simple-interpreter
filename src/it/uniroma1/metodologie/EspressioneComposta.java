@@ -4,7 +4,7 @@ package it.uniroma1.metodologie;
  * Classe per le espressioni composte che estende la superclasse Espressione
  */
 
-public class EspressioneComposta extends Espressione{
+public class EspressioneComposta extends Espressione {
 
     /**
      * Espressione 1
@@ -31,13 +31,11 @@ public class EspressioneComposta extends Espressione{
      * @param op operatore
      */
 
-    public EspressioneComposta(Espressione e1, Espressione e2, Operatore op)
-    {
+    public EspressioneComposta(Espressione e1, Espressione e2, Operatore op) {
         super(e1.tipo);
         this.e1 = e1;
         this.e2 = e2;
         this.op = op;
-
     }
 
     /**
@@ -52,7 +50,8 @@ public class EspressioneComposta extends Espressione{
             MaggioreMinoreException,
             TipoVariabiliDiversoException
     {
-        super.tipo = op.esegui(e1,e2).tipo;
-        return op.esegui(e1,e2).getValore();
+        var espressione = this.op.esegui(e1,e2);
+        super.tipo = espressione.tipo;
+        return espressione.getValore();
     }
 }

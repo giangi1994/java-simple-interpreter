@@ -48,7 +48,7 @@ public class Programma {
      * @param nomeFile nome del file
      */
 
-    public Programma(String nomeFile){
+    public Programma(String nomeFile) {
         for (int i=0; i<10; i++) this.variabili.add(i, new Stringa("undefined"));
         this.nomeFile = nomeFile;
     }
@@ -58,9 +58,7 @@ public class Programma {
      * @param istruzioni istruzioni da eseguire
      */
 
-    public Programma(ArrayList<Istruzione> istruzioni){
-        this.istruzioni = istruzioni;
-    }
+    public Programma(ArrayList<Istruzione> istruzioni) { this.istruzioni = istruzioni; }
 
     /**
      * Esegue il dispatcher dell'array di stringhe passato in input
@@ -77,11 +75,12 @@ public class Programma {
             TipoVariabiliDiversoException
     {
         ArrayList<Espressione> e1 = new ArrayList<>();
-        for(int i=0; i<s.length; i++) {
-            switch (s[i].charAt(0)){
+        for (int i=0; i<s.length; i++) {
+
+            switch (s[i].charAt(0)) {
                 //se la stringa inizia per $
                 case '$':
-                    if(variabili.get(Integer.parseInt(String.valueOf(s[i].charAt(1)))).getValore() != "undefined") e1.add(variabili.get(Integer.parseInt(String.valueOf(s[i].charAt(1)))));
+                    if (variabili.get(Integer.parseInt(String.valueOf(s[i].charAt(1)))).getValore() != "undefined") e1.add(variabili.get(Integer.parseInt(String.valueOf(s[i].charAt(1)))));
                     else throw new VariabileNonDefinitaException(Integer.parseInt(String.valueOf(s[i].charAt(1))));break;
                 //se la stringa inizia per "
                 case '\"': e1.add(new Stringa(s[i].replace("\"", "")));break;
@@ -120,7 +119,7 @@ public class Programma {
         int j = 2;
         Espressione a = new EspressioneComposta(arE.get(0), arE.get(1), operatore);
 
-        if(arE.size() > 2 && (operatore == Operatore.DISUGUAGLIANZA || operatore == Operatore.UGUAGLIANZA || operatore == Operatore.MINORE || operatore == Operatore.MAGGIORE || operatore == Operatore.MAGGIORE_UGUALE || operatore == Operatore.MINORE_UGUALE)){
+        if (arE.size() > 2 && (operatore == Operatore.DISUGUAGLIANZA || operatore == Operatore.UGUAGLIANZA || operatore == Operatore.MINORE || operatore == Operatore.MAGGIORE || operatore == Operatore.MAGGIORE_UGUALE || operatore == Operatore.MINORE_UGUALE)) {
             throw new MaxConfrontiException();
         }
         while (j < arE.size()) {
@@ -210,37 +209,37 @@ public class Programma {
         ArrayList<Espressione> e1 = new ArrayList<>();
 
         //controllo se il nome della variabile è nel range $0-$9 e non permetto il confronto tra espressioni composte (es. $0+$5 == 11+$2)
-        if((s.replace(" ", "").charAt(2) != '=') || s1.equals("") || (s1.contains("+") && (s1.contains("==") || s1.contains("<>") || s1.contains(">") || s1.contains("<") || s1.contains("<=") || s1.contains(">=")) )) throw new SintassiNonValidaException();
-        else if(s1.contains("+")){
+        if ((s.replace(" ", "").charAt(2) != '=') || s1.equals("") || (s1.contains("+") && (s1.contains("==") || s1.contains("<>") || s1.contains(">") || s1.contains("<") || s1.contains("<=") || s1.contains(">=")) )) throw new SintassiNonValidaException();
+        else if (s1.contains("+")) {
             String[] s2 = s1.replace("+", " ").split(" ");
             e1 = dispatcher(s2);
            return assegna(e1, Operatore.SOMMA, valoreVariabile);
-        }else if(s.contains("==")){
+        } else if (s.contains("==")) {
             String[] s2 = s1.replace("==", " ").split(" ");
             e1 = dispatcher(s2);
             return assegna(e1, Operatore.UGUAGLIANZA, valoreVariabile);
-        }else if(s.contains("<>")){
+        } else if (s.contains("<>")) {
             String[] s2 = s1.replace("<>", " ").split(" ");
             e1 = dispatcher(s2);
            return assegna(e1, Operatore.DISUGUAGLIANZA, valoreVariabile);
-        }else if(s.contains("<=")){
+        } else if (s.contains("<=")) {
             String s2 = s1.replace("<=", " ");
             String[] s3 = s2.replace("=", " ").split(" ");
             e1 = dispatcher(s3);
             return assegna(e1, Operatore.MINORE_UGUALE, valoreVariabile);
-        }else if(s.contains(">=")){
+        } else if (s.contains(">=")) {
             String[] s2 = s1.replace(">=", " ").split(" ");
             e1 = dispatcher(s2);
             return assegna(e1, Operatore.MAGGIORE_UGUALE, valoreVariabile);
-        }else if(s.contains("<")){
+        } else if (s.contains("<")) {
             String[] s2 = s1.replace("<", " ").split(" ");
             e1 = dispatcher(s2);
             return assegna(e1, Operatore.MINORE, valoreVariabile);
-        }else if(s.contains(">")){
+        } else if (s.contains(">")) {
             String[] s2 = s1.replace(">", " ").split(" ");
             e1 = dispatcher(s2);
             return assegna(e1, Operatore.MAGGIORE, valoreVariabile);
-        }else {
+        } else {
             String[] s2 = {s1};
             e1 = dispatcher(s2);
             return assegna(e1,valoreVariabile);
@@ -266,12 +265,12 @@ public class Programma {
             SintassiNonValidaException
     {
         String s1 = s.replace(" ", "");
-        switch (s1.charAt(5)){
+        switch (s1.charAt(5)) {
             case '$':
                 var valoreVariabile = Integer.parseInt(s.substring(7));
                 return new Print(new Stringa(variabili.get(valoreVariabile).getValore()));
             case '\"':
-                if(s.charAt(s.length()-1) != '\"') throw new SintassiNonValidaException();
+                if (s.charAt(s.length()-1) != '\"') throw new SintassiNonValidaException();
                 return new Print(new Stringa(s.substring(7,s.length()-1)));
         }
         throw new SintassiNonValidaException();
@@ -284,12 +283,9 @@ public class Programma {
     /**
      * Dispatcher per la selezione
      * @param e lista di espressioni su cui eseguire l'operazione
-     * @param i lista di istruzioni per l'if
-     * @param iE lista istruzioni per l'else
      * @param iIf array di stringhe per l'if
      * @param iElse array di stringhe per l'else
      * @param operatore operatore
-     * @return Ritorna un oggetto Selezione
      * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
      * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
      * @throws SintassiNonValidaException viene lanciata quando la sintassi non e' valida
@@ -297,7 +293,7 @@ public class Programma {
      * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
      */
 
-    private Selezione dispatcherSelezione(ArrayList<Espressione> e, ArrayList<Istruzione> i, ArrayList<Istruzione> iE,String[] iIf, String[] iElse, Operatore operatore) throws
+    private void dispatcherSelezione(ArrayList<Espressione> e,String[] iIf, String[] iElse, Operatore operatore) throws
             MaggioreMinoreException,
             TipoVariabiliDiversoException,
             SintassiNonValidaException,
@@ -306,29 +302,28 @@ public class Programma {
     {
         EspressioneComposta eC = new EspressioneComposta(e.get(0), e.get(1),operatore);
 
-        if(Boolean.parseBoolean(eC.getValore())){
-            for (int j=1 ; j<iIf.length; j++){
-                switch (iIf[j].charAt(0)){
-                    case '$': i.add(assegnazione(iIf[j]));break;
-                    case 'P': i.add(print(iIf[j]));break;
-                    case 'E' : i.add(termineEsecuzione());break;
+        if (Boolean.parseBoolean(eC.getValore())) {
+            for (int j=1; j<iIf.length; j++) {
+                switch (iIf[j].charAt(0)) {
+                    case '$': assegnazione(iIf[j]).esegui();break;
+                    case 'P': print(iIf[j]).esegui();break;
+                    case 'E': termineEsecuzione().esegui();break;
                 }
             }
-        }else{
+        } else {
             for (int k=0; k<iElse.length; k++) {
                 switch (iElse[k].charAt(0)) {
-                    case '$': iE.add(assegnazione(iElse[k]));break;
-                    case 'P': iE.add(print(iElse[k]));break;
-                    case 'E' : iE.add(termineEsecuzione());break;
+                    case '$': assegnazione(iElse[k]).esegui();break;
+                    case 'P': print(iElse[k]).esegui();break;
+                    case 'E': termineEsecuzione().esegui();break;
                 }
             }
         }
-        return new Selezione(eC,i, iE);
     }
 
     /**
-     * @param s riga del file
-     * @return Ritorna l'oggetto Selezione
+     * Esegue la selezione
+     * @param s s riga del file
      * @throws TipoVariabiliDiversoException viene lanciata quando il tipo delle variabili e' diverso
      * @throws MaggioreMinoreException viene lanciata quando nelle operazioni, MINORE, MAGGIORE, MINORE_UGUALE, MAGGIORE_UGUALE, una delle due espressioni non e' di tipo intero
      * @throws VariabileNonDefinitaException viene lanciata quando una variabile non e' definita
@@ -336,7 +331,7 @@ public class Programma {
      * @throws MaxConfrontiException viene lanciata quando si confrontano più di due espressioni
      */
 
-    private Selezione selezione(String s) throws
+    private void selezione(String s) throws
             TipoVariabiliDiversoException,
             MaggioreMinoreException,
             VariabileNonDefinitaException,
@@ -346,38 +341,37 @@ public class Programma {
         ArrayList<Espressione> e1 = new ArrayList<>();
         String s1 = s.substring(3);
         String[] s2 = s1.replace("THEN", "").replace(":", "").split("ELSE ");
-        ArrayList<Istruzione> i = new ArrayList<>();
-        ArrayList<Istruzione> iE = new ArrayList<>();
+        //istruzioni per l'if
         String[] iIf = s2[0].trim().split("  ");
+       //istruzioni per l'else
         String[] iElse = new String[0];
-        if(s2.length>1) iElse = s2[1].trim().split("  ");
+        if (s2.length>1) iElse = s2[1].trim().split("  ");
 
-        if(s1.contains("==")){
+        if (s1.contains("==")) {
             String[] s3 = iIf[0].replace(" ", "").replace("==", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.UGUAGLIANZA);
-        }else if(s1.contains("<>")){
+            dispatcherSelezione(e1,iIf,iElse,Operatore.UGUAGLIANZA);
+        } else if (s1.contains("<>")) {
             String[] s3 = iIf[0].replace(" ", "").replace("<>", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.DISUGUAGLIANZA);
-        }else if(s1.contains("<=")){
+            dispatcherSelezione(e1,iIf,iElse,Operatore.DISUGUAGLIANZA);
+        } else if (s1.contains("<=")) {
             String[] s3 = iIf[0].replace(" ", "").replace("<=", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MINORE_UGUALE);
-        }else if(s1.contains(">=")){
+            dispatcherSelezione(e1,iIf,iElse,Operatore.MINORE_UGUALE);
+        } else if (s1.contains(">=")) {
             String[] s3 = iIf[0].replace(" ", "").replace(">=", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MAGGIORE_UGUALE);
-        }else if(s1.contains("<")){
+            dispatcherSelezione(e1,iIf,iElse,Operatore.MAGGIORE_UGUALE);
+        } else if (s1.contains("<")) {
             String[] s3 = iIf[0].replace(" ", "").replace("<", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MINORE);
-        }else if(s1.contains(">")){
+            dispatcherSelezione(e1,iIf,iElse,Operatore.MINORE);
+        } else if (s1.contains(">")) {
             String[] s3 = iIf[0].replace(" ", "").replace(">", " ").split(" ");
             e1 = dispatcher(s3);
-            return dispatcherSelezione(e1,i,iE,iIf,iElse,Operatore.MAGGIORE);
-        }
-        throw new SintassiNonValidaException();
+            dispatcherSelezione(e1,iIf,iElse,Operatore.MAGGIORE);
+        } else throw new SintassiNonValidaException();
     }
 
     /**
@@ -433,11 +427,11 @@ public class Programma {
         String[] s2 = s1.replace("DO", "").replace(":", "").split("  ");
         String[] confronto = s2[0].trim().split("  ");
         String s3 = "";
-        for(int k=0; k<s2.length; k++){
-            if(s2[k].contains("=")) s3 = String.valueOf(s2[k].charAt(s2[k].length()-1));
+        for (int k=0; k<s2.length; k++) {
+            if (s2[k].contains("=")) s3 = String.valueOf(s2[k].charAt(s2[k].length()-1));
         }
 
-        if(s1.contains("==")) {
+        if (s1.contains("==")) {
             String[] s4 = confronto[0].replace(" ", "").replace("==", " ").split(" ");
             e1 = dispatcher(s4);
             int inizio = Integer.parseInt(e1.get(0).getValore());
@@ -446,7 +440,7 @@ public class Programma {
                 dispatcherIterazione(s2);
                 inizio+=Integer.parseInt(s3);
             }
-        }else if(s1.contains("<>")) {
+        } else if (s1.contains("<>")) {
             String[] s4 = confronto[0].replace(" ", "").replace("<>", " ").split(" ");
             e1 = dispatcher(s4);
             int inizio = Integer.parseInt(e1.get(0).getValore());
@@ -455,7 +449,7 @@ public class Programma {
                 dispatcherIterazione(s2);
                 inizio+=Integer.parseInt(s3);
             }
-        }else if(s1.contains("<=")) {
+        } else if (s1.contains("<=")) {
             String[] s4 = confronto[0].replace(" ", "").replace("<=", " ").split(" ");
             e1 = dispatcher(s4);
             int inizio = Integer.parseInt(e1.get(0).getValore());
@@ -464,7 +458,7 @@ public class Programma {
                 dispatcherIterazione(s2);
                 inizio+=Integer.parseInt(s3);
             }
-        }else if(s1.contains(">=")) {
+        } else if (s1.contains(">=")) {
             String[] s4 = confronto[0].replace(" ", "").replace(">=", " ").split(" ");
             e1 = dispatcher(s4);
             int inizio = Integer.parseInt(e1.get(0).getValore());
@@ -473,7 +467,7 @@ public class Programma {
                 dispatcherIterazione(s2);
                 inizio+=Integer.parseInt(s3);
             }
-        }else if(s1.contains("<")) {
+        } else if (s1.contains("<")) {
             String[] s4 = confronto[0].replace(" ", "").replace("<", " ").split(" ");
             e1 = dispatcher(s4);
             int inizio = Integer.parseInt(e1.get(0).getValore());
@@ -482,7 +476,7 @@ public class Programma {
                 dispatcherIterazione(s2);
                 inizio+=Integer.parseInt(s3);
             }
-        }else  if(s1.contains(">")) {
+        } else if (s1.contains(">")) {
             String[] s4 = confronto[0].replace(" ", "").replace(">", " ").split(" ");
             e1 = dispatcher(s4);
             int inizio = Integer.parseInt(e1.get(0).getValore());
@@ -491,7 +485,7 @@ public class Programma {
                 dispatcherIterazione(s2);
                 inizio+=Integer.parseInt(s3);
             }
-        }else throw new SintassiNonValidaException();
+        } else throw new SintassiNonValidaException();
     }
 
     /**
@@ -503,7 +497,7 @@ public class Programma {
      * @return Ritorna un oggetto Commento
      */
 
-    private Commento commento(String s){
+    private Commento commento(String s) {
         String s1 = s.substring(4);
         return new Commento(s1);
     }
@@ -516,9 +510,7 @@ public class Programma {
      * @return Ritorna un oggetto TermineEsecuzione
      */
 
-    private TermineEsecuzione termineEsecuzione(){
-        return new TermineEsecuzione(this.righeFile);
-    }
+    private TermineEsecuzione termineEsecuzione() { return new TermineEsecuzione(this.righeFile); }
 
     /**
      * ETICHETTA
@@ -530,7 +522,7 @@ public class Programma {
      * @param index numero riga del file dove e' presente l'etichetta
      */
 
-    private void setEtichetta(String s, int index){
+    private void setEtichetta(String s, int index) {
         String s1 = s.replace(":", "");
         etichette.add(s1);
         etichette.add(String.valueOf(index));
@@ -545,27 +537,28 @@ public class Programma {
      * @return Ritorna il numero della riga su cui bisogna ritornare
      */
 
-    private int salto(String s){
+    private int salto(String s) {
         String s1 = s.replace("GOTO", "").trim();
         int index = 0;
-        for(int k = 0; k<etichette.size(); k++){
-           if(etichette.get(k).equals(s1)) index = Integer.parseInt(etichette.get(k+1));break;
+        for (int k = 0; k<etichette.size(); k++) {
+           if (etichette.get(k).equals(s1)) index = Integer.parseInt(etichette.get(k+1));break;
         }
-
         return index+1;
     }
 
     /**
-     * Legge le righe del file e le aggiunge alla lista di stringhe
+     * Legge le righe del file e le aggiunge alla lista di stringhe se la riga non è vuota
      * @return Ritorna la lista con tutte le righe del file
      */
 
     private ArrayList<String> readFile() {
         ArrayList<String> list = new ArrayList<>();
+        String riga = "";
 
         try (BufferedReader br = Files.newBufferedReader(Paths.get(nomeFile))) {
             while (br.ready()) {
-                list.add(br.readLine().trim());
+                riga = br.readLine().trim();
+                if(!riga.equals("")) list.add(riga);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -589,14 +582,14 @@ public class Programma {
             TipoVariabiliDiversoException,
             VariabileNonDefinitaException
     {
-        if(istruzioni.size() > 0){
+        if (istruzioni.size() > 0) {
             int k = 0;
             int salto = -1;
             while (k < istruzioni.size()) {
-                    if(istruzioni.get(k) instanceof Etichetta) setEtichetta(istruzioni.get(k).toString(),k);
-                    if(istruzioni.get(k) instanceof Salto) salto = salto(istruzioni.get(k).toString());
+                    if (istruzioni.get(k) instanceof Etichetta) setEtichetta(istruzioni.get(k).toString(),k);
+                    if (istruzioni.get(k) instanceof Salto) salto = salto(istruzioni.get(k).toString());
                     istruzioni.get(k).esegui();
-                    if(salto<0) k++;
+                    if (salto<0) k++;
                     else {
                         k=salto;
                         salto=-1;
@@ -611,11 +604,12 @@ public class Programma {
                 switch (righeFile.get(i).charAt(0)) {
                     case '$': assegnazione(righeFile.get(i)).esegui();break;
                     case 'P': print(righeFile.get(i)).esegui();break;
-                    case 'I': selezione(righeFile.get(i)).esegui();break;
+                    case 'I': selezione(righeFile.get(i));break;
                     case 'W': iterazione(righeFile.get(i));break;
                     case 'R': commento(righeFile.get(i));break;
                     case 'E': termineEsecuzione().esegui();break;
                     case 'G': salto = salto(righeFile.get(i));break;
+                    default: break;
                 }
                 if (salto < 0) i++;
                 else {
@@ -631,7 +625,7 @@ public class Programma {
      * @return Ritorna un'istanza di Programma con input il nome del file
      */
 
-    public static Programma fromFile(String nomeFile){ return new Programma(nomeFile); }
+    public static Programma fromFile(String nomeFile) { return new Programma(nomeFile); }
 
     /**
      * @param istruzioni istruzioni da eseguire

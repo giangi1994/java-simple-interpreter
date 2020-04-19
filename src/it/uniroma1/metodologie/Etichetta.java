@@ -17,7 +17,7 @@ public class Etichetta implements Istruzione {
      * @param etichetta etichetta
      */
 
-    public Etichetta(String etichetta){ this.etichetta = etichetta; }
+    public Etichetta(String etichetta) { this.etichetta = etichetta; }
 
     @Override
     public void esegui() { }
@@ -27,5 +27,5 @@ public class Etichetta implements Istruzione {
      */
 
     @Override
-    public String toString(){ return this.etichetta; }
+    public String toString() { return this.etichetta; }
 }

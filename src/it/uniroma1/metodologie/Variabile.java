@@ -10,22 +10,22 @@ public class Variabile extends Espressione {
      * Stringa che defiinisce la variabile
      */
 
-    protected String variabile;
+    protected String nomeVariabile;
 
     /**
      * Espressione da assegnare alla variabile
      */
 
-    protected Espressione espressione;
+    protected Espressione valoreEspressione;
 
     /**
      * Costruttore della variabile
-     * @param valore variabile
+     * @param nome variabile
      */
 
-    public Variabile(int valore){
+    public Variabile(int nome) {
         super(null);
-        this.variabile = "$" + valore;
+        this.nomeVariabile = "$" + nome;
     }
 
     /**
@@ -38,5 +38,5 @@ public class Variabile extends Espressione {
    public String getValore() throws
             MaggioreMinoreException,
             TipoVariabiliDiversoException
-    { return this.espressione.getValore(); }
+    { return this.valoreEspressione.getValore(); }
 }
